@@ -26,13 +26,21 @@ class BaseModel:
     instance and tha class name.
 
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         Class instantiation, assigns an id, creation and first update date/time
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        # If an object is initialized with arguments, assign them.
+        # **kwargs is a dictionary with format{attribute name: attribute value}
+        if kwargs:
+            {setattr(self, key, val) for key, val in kwargs.items()
+                if key != '__class__'}
+            self.created_at = datetime.fromisoformat(kwargs["created_at"])
+            self.updated_at = datetime.fromisoformat(kwargs["updated_at"])
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """
@@ -50,7 +58,7 @@ class BaseModel:
         """
         Creates a dictionary version of the instance attributes
         """
-        attributes_dict = vars(self).copy()
+        attributes_dict = self.__dict__.copy()
         # Add __class__ variable to attributes_dict
         attributes_dict["__class__"] = self.__class__.__name__
         # Convert created_at and updated_at to string object in ISO format
