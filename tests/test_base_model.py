@@ -40,9 +40,9 @@ class TestBaseModel(unittest.TestCase):
         """Test creation of class and to_dict"""
         my_model = BaseModel()
         self.assertIs(type(my_model), BaseModel)
-        my_model.name = "Holberton"
+        my_model.name = "My_First_Model"
         my_model.my_number = 89
-        self.assertEqual(my_model.name, "Holberton")
+        self.assertEqual(my_model.name, "My_First_Model")
         self.assertEqual(my_model.my_number, 89)
         model_types_json = {
             "my_number": int,
