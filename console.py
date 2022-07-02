@@ -162,13 +162,13 @@ class HBNBCommand(cmd.Cmd):
                 self.do_all(class_name)
                 return
             elif com == "count()":
-                for instances in storeage.all():
+                for instances in storage.all():
                     if instances.split(".")[0] == class_name:
                         count += 1
                 print(count)
                 return
         except Exception:
-            print(f"*** Unknown syntax {arg}")
+            print(f"*** Unknown syntax {args}")
 
 
 if __name__ == '__main__':
