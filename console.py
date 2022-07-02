@@ -140,6 +140,28 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
+    def default(self, arg):
+        """
+        default will be called if an unknown command is enterd,
+        It is used to handle the commands <class name>.command(id)
+        """
+
+        count = 0
+
+        try:
+            args = arg.split(".")
+            class_name = args[0]
+            com = args[1]
+            if com == "all()"
+            self.do_all(class_name)
+            return
+            elif com == "count()":
+                for instances in storeage.all():
+                    if instances.split(".")[0] == class_name:
+                        count += 1
+                print(count)
+                return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
