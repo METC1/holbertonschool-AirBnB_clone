@@ -6,6 +6,12 @@ import cmd
 import models
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -152,16 +158,17 @@ class HBNBCommand(cmd.Cmd):
             args = arg.split(".")
             class_name = args[0]
             com = args[1]
-            if com == "all()"
-            self.do_all(class_name)
-            return
+            if com == "all()":
+                self.do_all(class_name)
+                return
             elif com == "count()":
                 for instances in storeage.all():
                     if instances.split(".")[0] == class_name:
                         count += 1
                 print(count)
                 return
-
+        except Exception:
+            print(f"*** Unknown syntax {arg}")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
