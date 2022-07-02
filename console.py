@@ -159,7 +159,6 @@ class HBNBCommand(cmd.Cmd):
             args = arg.split(".")
             class_name = args[0]
             com = args[1]
-            print(com)
             if com == "all()":
                 self.do_all(class_name)
                 return
