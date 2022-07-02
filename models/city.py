@@ -20,7 +20,7 @@ class City(BaseModel):
     name = ""
         
     def __init__(self, *args, **kwargs):
-    """
-    Class instantation: uses init from parent class wit super
-    """
-    super().__init__(*args, **kwargs)
+        """
+        Class instantation: uses init from parent class wit super
+        """
+        super().__init__(*args, **kwargs)
