@@ -146,6 +146,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
+    
 
     def default(self, arg):
         """
@@ -154,11 +155,11 @@ class HBNBCommand(cmd.Cmd):
         """
 
         count = 0
-
         try:
             args = arg.split(".")
             class_name = args[0]
             com = args[1]
+            print(com)
             if com == "all()":
                 self.do_all(class_name)
                 return
@@ -167,6 +168,21 @@ class HBNBCommand(cmd.Cmd):
                     if instances.split(".")[0] == class_name:
                         count += 1
                 print(count)
+                return
+            elif com.startswith('show('):
+                idarg = com.rpartition('(')[2]
+                idarg = idarg.rpartition(')')[0]
+                self.do_show(idarg)
+                return
+            elif com.startswith('destroy('):
+                idarg = com.rpartition('(')[2]
+                idarg = idarg.rpartition(')')[0]
+                self.do_destroy(idarg)
+                return
+            elif com.startswith('update('):
+                idarg = com.rpartition('(')[2]
+                idarg = idarg.rpartition(')')[0]
+                self.do_update(idarg)
                 return
         except Exception:
             print(f"*** Unknown syntax {arg}")
