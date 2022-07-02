@@ -146,6 +146,24 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
+    def do_destroy(self, arg):
+        """Deletes an instance based on the class and id"""
+        args = args.split(arg)
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] in storage:
+            if len(args) > 1:
+                key = args[0] + "." + args[1]
+                if key in models.storage.all():
+                    models.storage.all().pop(key)
+                    models.storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")
+
     def default(self, arg):
         """
         default will be called if an unknown command is enterd,
@@ -168,8 +186,7 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
                 return
         except Exception:
-            print(f"*** Unknown syntax {args}")
-
+            print(f"*** Unknown syntax {arg}")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
