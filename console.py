@@ -172,17 +172,17 @@ class HBNBCommand(cmd.Cmd):
             elif com.startswith('show('):
                 idarg = com.rpartition('(')[2]
                 idarg = idarg.rpartition(')')[0]
-                self.do_show("User " + idarg)
+                self.do_show(class_name + " " + idarg)
                 return
             elif com.startswith('destroy('):
                 idarg = com.rpartition('(')[2]
                 idarg = idarg.rpartition(')')[0]
-                self.do_destroy("User " + idarg)
+                self.do_destroy(class_name + " " + idarg)
                 return
             elif com.startswith('update('):
                 idarg = com.rpartition('(')[2]
                 idarg = idarg.rpartition(')')[0]
-                self.do_update("User " + idarg)
+                self.do_update(class_name + " " + idarg)
                 return
         except Exception:
             print(f"*** Unknown syntax {arg}")
