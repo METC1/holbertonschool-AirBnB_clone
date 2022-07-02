@@ -14,7 +14,8 @@ class HBNBCommand(cmd.Cmd):
     interpreter
     """
     prompt = "(hbnb)"
-    class_types = ["BaseModel"]
+    class_types = ["BaseModel", "User", "State", "City", "Amenity",
+                   "Place", "Review"]
 
     def do_quit(self, args):
         """
