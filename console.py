@@ -64,6 +64,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
         elif len(line.split()) < 2:
+            print(line.split())            
             print("** instance id missing **")
         else:
             class_name, object_id = [str(s) for s in line.split()]
@@ -171,17 +172,17 @@ class HBNBCommand(cmd.Cmd):
             elif com.startswith('show('):
                 idarg = com.rpartition('(')[2]
                 idarg = idarg.rpartition(')')[0]
-                self.do_show(idarg)
+                self.do_show("User " + idarg)
                 return
             elif com.startswith('destroy('):
                 idarg = com.rpartition('(')[2]
                 idarg = idarg.rpartition(')')[0]
-                self.do_destroy(idarg)
+                self.do_destroy("User " + idarg)
                 return
             elif com.startswith('update('):
                 idarg = com.rpartition('(')[2]
                 idarg = idarg.rpartition(')')[0]
-                self.do_update(idarg)
+                self.do_update("User " + idarg)
                 return
         except Exception:
             print(f"*** Unknown syntax {arg}")
