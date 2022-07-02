@@ -3,6 +3,7 @@
 console.py contains the entry point of the command interpreter
 """
 import cmd
+from unicodedata import name
 import models
 from models import storage
 from models.base_model import BaseModel
@@ -170,19 +171,23 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
                 return
             elif com.startswith('show('):
-                idarg = com.rpartition('(')[2]
-                idarg = idarg.rpartition(')')[0]
-                self.do_show(class_name + " " + idarg)
+                cmdargs = com.rpartition('(')[2]
+                cmdargs = cmdargs.rpartition(')')[0]
+                self.do_show(class_name + " " + cmdargs)
                 return
             elif com.startswith('destroy('):
-                idarg = com.rpartition('(')[2]
-                idarg = idarg.rpartition(')')[0]
-                self.do_destroy(class_name + " " + idarg)
+                cmdargs = com.rpartition('(')[2]
+                cmdargs = cmdargs.rpartition(')')[0]
+                self.do_destroy(class_name + " " + cmdargs)
                 return
             elif com.startswith('update('):
-                idarg = com.rpartition('(')[2]
-                idarg = idarg.rpartition(')')[0]
-                self.do_update(class_name + " " + idarg)
+                cmdargs = com.rpartition('(')[2]                
+                cmdargs = cmdargs.rpartition(')')[0]
+                cmdargs = cmdargs.split(", ")
+                idargs = cmdargs[0]
+                name_attribute_args = cmdargs[1]
+                value_attribute_args = cmdargs[2]
+                self.do_update(class_name + " " + idargs + " " + name_attribute_args + " " + value_attribute_args)
                 return
         except Exception:
             print(f"*** Unknown syntax {arg}")
