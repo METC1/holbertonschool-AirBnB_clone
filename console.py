@@ -67,8 +67,10 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
         elif len(line.split()) < 2:
-            print(line.split())
-            print("** instance id missing **")
+            if class_name in self.class_types:
+                print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
         else:
             class_name, object_id = [str(s) for s in line.split()]
             if class_name in self.class_types:
@@ -122,10 +124,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-        Typing <update class_name object_id attribute_name attribute_value>
+        Typing <update class_name object_id attribute_name "attribute_value">
         updates that instance by adding or updating attribute (saves the change
-        into the JSON file). If the attribute value is an string, it must be
-        double quoted
+        into the JSON file).
         """
         if not line:
             print("** class name missing **")
