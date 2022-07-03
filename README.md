@@ -14,7 +14,7 @@ The proyect consist in building a command interpreter, which is the first step t
 
 To launch the console application in interactive mode simply run:
 
-```console.py ```
+```./console.py ```
 
 or to use the non-interactive mode run:
 
