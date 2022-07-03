@@ -67,6 +67,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
         elif len(line.split()) < 2:
+            class_name = line
             if class_name in self.class_types:
                 print("** instance id missing **")
             else:
