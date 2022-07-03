@@ -5,6 +5,8 @@ console.py contains the entry point of the command interpreter
 import cmd
 from unicodedata import name
 import models
+import json
+import re 
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -149,7 +151,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     
-
     def default(self, arg):
         """
         default will be called if an unknown command is enterd,
@@ -181,13 +182,29 @@ class HBNBCommand(cmd.Cmd):
                 self.do_destroy(class_name + " " + cmdargs)
                 return
             elif com.startswith('update('):
-                cmdargs = com.rpartition('(')[2]                
+                cmdargs = com.rpartition('(')[2]
                 cmdargs = cmdargs.rpartition(')')[0]
-                cmdargs = cmdargs.split(", ")
-                idargs = cmdargs[0]
-                name_attribute_args = cmdargs[1]
-                value_attribute_args = cmdargs[2]
-                self.do_update(class_name + " " + idargs + " " + name_attribute_args + " " + value_attribute_args)
+                if cmdargs.find('{') > 0:
+                    cmdargs = cmdargs.split(", {")
+                    idargs = cmdargs[0]
+                    dictionary = cmdargs[1]
+                    dictionary = dictionary[:-1]
+                    dictionary = re.split(': |, ',dictionary)
+                    for element in range (len(dictionary)):
+                        if (dictionary[element].find('"') == -1) and (dictionary[element].find("'") == -1):
+                            dictionary[element] = '"' + dictionary[element] + '"'
+                        if (dictionary[element].find('"') != -1) or (dictionary[element].find("'") != -1):
+                            dictionary[element] = dictionary[element][1:-1]
+                    for element in range (0,len(dictionary),2):
+                        line = (class_name + " " + idargs + " " + dictionary[element] + " " + dictionary[element+1])
+                        self.do_update(line)
+                elif cmdargs.find('{') < 1:
+                    cmdargs = cmdargs.split(", ")
+                    idargs = cmdargs[0]
+                    name_attribute_args = cmdargs[1]
+                    value_attribute_args = cmdargs[2]
+                    self.do_update(class_name + " " + idargs + " " + name_attribute_args + " " + value_attribute_args)
+                    return
                 return
         except Exception:
             print(f"*** Unknown syntax {arg}")
