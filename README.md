@@ -4,11 +4,11 @@
 
 The proyect consist in building a command interpreter, which is the first step towards building a full web application, an AirBnB clone.  This back-end console of the website, will allow the user to:
 
-Create a new object (ex: a new User or a new Place)
-Retrieve an object from a file, a database etc…
-Do operations on objects (count, compute stats, etc…)
-Update attributes of an object
-Destroy an object
+*Create a new object (ex: a new User or a new Place)
+*Retrieve an object from a file, a database etc…
+*Do operations on objects (count, compute stats, etc…)
+*Update attributes of an object
+*Destroy an object
 
 #### Usage
 
