@@ -6,7 +6,7 @@ import cmd
 from unicodedata import name
 import models
 import json
-import re 
+import re
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         if not line:
             print("** class name missing **")
         elif len(line.split()) < 2:
-            print(line.split())            
+            print(line.split())
             print("** instance id missing **")
         else:
             class_name, object_id = [str(s) for s in line.split()]
@@ -150,7 +150,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    
     def default(self, arg):
         """
         default will be called if an unknown command is enterd,
@@ -189,13 +188,13 @@ class HBNBCommand(cmd.Cmd):
                     idargs = cmdargs[0]
                     dictionary = cmdargs[1]
                     dictionary = dictionary[:-1]
-                    dictionary = re.split(': |, ',dictionary)
-                    for element in range (len(dictionary)):
-                        if (dictionary[element].find('"') == -1) and (dictionary[element].find("'") == -1):
+                    dictionary = re.split(': |, ', dictionary)
+                    for element in range(len(dictionary)):
+                        if(dictionary[element].find('"') == -1) and (dictionary[element].find("'") == -1):
                             dictionary[element] = '"' + dictionary[element] + '"'
-                        if (dictionary[element].find('"') != -1) or (dictionary[element].find("'") != -1):
+                        if(dictionary[element].find('"') != -1) or (dictionary[element].find("'") != -1):
                             dictionary[element] = dictionary[element][1:-1]
-                    for element in range (0,len(dictionary),2):
+                    for element in range(0, len(dictionary), 2):
                         line = (class_name + " " + idargs + " " + dictionary[element] + " " + dictionary[element+1])
                         self.do_update(line)
                 elif cmdargs.find('{') < 1:
@@ -208,6 +207,7 @@ class HBNBCommand(cmd.Cmd):
                 return
         except Exception:
             print(f"*** Unknown syntax {arg}")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
