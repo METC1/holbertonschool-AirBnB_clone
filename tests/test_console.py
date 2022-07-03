@@ -7,6 +7,9 @@ import cmd
 import pycodestyle
 import unittest
 import console
+import sys
+from io import StringIO
+from unittest.mock import patch
 HBNB = console.HBNBCommand
 
 
@@ -109,3 +112,57 @@ class TestConsole(unittest.TestCase):
         n_con = len(HBNB.__doc__)
         self.assertGreaterEqual(n_con, 10, "Console HBNBCommand document\
         ation has less than 10 letters")
+
+    def test_create_no_class(self):
+        """
+        Test the console create with no class
+        """
+        expected = "** class name missing **"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("create"))
+            self.assertEqual(expected, output.getvalue().strip())
+
+    def test_create_bad_class(self):
+        """
+        Test the console create with bad class argument
+        """
+        expected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("create BadClass"))
+            self.assertEqual(expected, output.getvalue().strip())
+
+    def test_show_no_class(self):
+        """
+        Test the console show with no class
+        """
+        expected = "** class name missing **"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("show"))
+            self.assertEqual(expected, output.getvalue().strip())
+
+    def test_show_bad_class(self):
+        """
+        Test the console show with bad class argument
+        """
+        expected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("show BadClass"))
+            self.assertEqual(expected, output.getvalue().strip())
+
+    def test_show_no_id(self):
+        """
+        Test the console show with User class and id argument missing
+        """
+        expected = "** instance id missing **"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("show User"))
+            self.assertEqual(expected, output.getvalue().strip())
+
+    def test_show_bad_id(self):
+        """
+        Test the console show with User class and a bad id argument
+        """
+        expected = "** no instance found **"
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("show User BadUser"))
+            self.assertEqual(expected, output.getvalue().strip())
