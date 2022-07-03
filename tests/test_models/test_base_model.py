@@ -6,8 +6,7 @@ import pep8
 import datetime
 from time import sleep
 
-from models.base_model import BaseModel
-
+from ..models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """Test for BaseModel class"""
