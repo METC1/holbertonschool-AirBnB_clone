@@ -207,8 +207,9 @@ class HBNBCommand(cmd.Cmd):
                     idargs = cmdargs[0]
                     name_attribute_args = cmdargs[1]
                     value_attribute_args = cmdargs[2]
-                    self.do_update(class_name + " " + idargs + " "
-                    + name_attribute_args + " " + value_attribute_args)
+                    self.do_update(class_name + " " + idargs +
+                                   " " + name_attribute_args +
+                                   " " + value_attribute_args)
                     return
                 return
         except Exception:
