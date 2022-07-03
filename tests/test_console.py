@@ -18,9 +18,9 @@ class TestConsole(unittest.TestCase):
         """
         Test if test_console.py passes the pycodestyle style
         """
-        console_style = pycodestyle.StyleGuide().check_\
-            files(['test_console.py'])
-        self.assertEqual(console_style.total_errors, 0, "Does not com\
+        style = pycodestyle.StyleGuide()
+        console_style_t = style.check_files(['test_console.py'])
+        self.assertEqual(console_style_t.total_errors, 0, "Does not com\
         ply with pycodestyle")
 
     def test_style(self):
