@@ -113,6 +113,20 @@ class TestConsole(unittest.TestCase):
         self.assertGreaterEqual(n_con, 10, "Console HBNBCommand document\
         ation has less than 10 letters")
 
+    def test_quit(self):
+        """
+        Test that the quit command exists
+        """
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertTrue(HBNB().onecmd("quit"))
+
+    def test_EOF(self):
+        """
+        Tests that the EOF command exists
+        """
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertTrue(HBNB().onecmd("EOF"))
+
     def test_create_no_class(self):
         """
         Test the console create with no class
