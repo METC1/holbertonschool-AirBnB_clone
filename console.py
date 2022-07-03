@@ -199,8 +199,8 @@ class HBNBCommand(cmd.Cmd):
                             dictionary[element] = dictionary[element][1:-1]
                     for element in range(0, len(dictionary), 2):
                         line = (class_name + " " + idargs + " " +
-                               dictionary[element] + " " +
-                               dictionary[element+1])
+                                dictionary[element] + " " +
+                                dictionary[element+1])
                         self.do_update(line)
                 elif cmdargs.find('{') < 1:
                     cmdargs = cmdargs.split(", ")
