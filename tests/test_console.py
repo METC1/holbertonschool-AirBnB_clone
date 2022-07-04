@@ -19,6 +19,99 @@ class TestConsole(unittest.TestCase):
     """
     Class to test Console class
     """
+    def test_prompt(self):
+        """
+        Test for the prompt text of the console
+        """
+        self.assertEqual("(hbnb)", HBNB.prompt)
+
+    def test_empty_line(self):
+        """
+        Test that no output exists with an empty line and enter
+        """
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd(""))
+            self.assertEqual("", output.getvalue().strip())
+
+    def test_help_quit(self):
+        """
+        Test for help of the quit command
+        """
+        help_text = ("Typing <quit> will exit the console")
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help quit"))
+            self.assertEqual(help_text, output.getvalue().strip())
+
+    def test_help_EOF(self):
+        """
+        Test for help of the EOF command
+        """
+        help_text = ("Typing <EOF> will exit the console")
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help EOF"))
+            self.assertEqual(help_text, output.getvalue().strip())
+
+    def test_help_create(self):
+        """
+        Test for help of the create command
+        """
+        help_text = ("Typing <create class_name> will create a new object "
+                     "of class class_name, will save it (to the JSON file) "
+                     "and will print it's id")
+        len_text = 135
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help create"))
+            self.assertEqual(len_text, len(output.getvalue().strip()))
+
+    def test_help_show(self):
+        """
+        Test for help of the show command
+        """
+        help_text = ("Typing <show class_name object_id> prints the "
+                     "string representation of the object")
+        len_text = 89
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help show"))
+            self.assertEqual(len_text, len(output.getvalue().strip()))
+
+    def test_help_destroy(self):
+        """
+        Test for help of the destroy command
+        """
+        help_text = ("Typing <destroy class_name object_id> deletes "
+                     "that instance and save the change into the JSON file")
+        len_text = 106
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help destroy"))
+            self.assertEqual(len_text, len(output.getvalue().strip()))
+
+    def test_help_all(self):
+        """
+        Test for help of the all command
+        """
+        help_text = ("Typing <all class_name> prints the string "
+                     "representation of all the objects of that "
+                     "class. Typing <all> prints the string representation "
+                     "of all objects")
+        len_text = 167
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help all"))
+            self.assertEqual(len_text, len(output.getvalue().strip()))
+
+    def test_help_update(self):
+        """
+        Test for help of the update command
+        """
+        help_text = ("Typing <update class_name object_id attribute_name "
+                     "attribute_value> updates that instance by adding or"
+                     "updating attribute (saves the change into the JSON"
+                     "file). If the attribute value is an string, it must"
+                     "be double quoted")
+        len_text = 178
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNB().onecmd("help update"))
+            self.assertEqual(len_text, len(output.getvalue().strip()))
+
     def test_style_test(self):
         """
         Test if test_console.py passes the pycodestyle style
