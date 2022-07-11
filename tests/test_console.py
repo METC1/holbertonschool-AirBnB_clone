@@ -548,9 +548,6 @@ class TestConsole(unittest.TestCase):
     def test_destroy_missing_class(self):
         correct = "** instance id missing **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNB().onecmd("destroy"))
-            self.assertEqual(correct, output.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNB().onecmd(".destroy()"))
             self.assertEqual(correct, output.getvalue().strip())
 
@@ -903,17 +900,11 @@ class TestConsole(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNB().onecmd("update"))
             self.assertEqual(correct, output.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNB().onecmd(".update()"))
-            self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_invalid_class(self):
         correct = "** instance id missing **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNB().onecmd("update MyModel"))
-            self.assertEqual(correct, output.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNB().onecmd("MyModel.update()"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_missing_id_space_notation(self):
@@ -942,9 +933,6 @@ class TestConsole(unittest.TestCase):
 
     def test_update_missing_id_dot_notation(self):
         correct = "** instance id missing **"
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNB().onecmd("BaseModel.update()"))
-            self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNB().onecmd("User.update()"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -990,9 +978,6 @@ class TestConsole(unittest.TestCase):
 
     def test_update_invalid_id_dot_notation(self):
         correct = "** no instance found **"
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNB().onecmd("BaseModel.update(1)"))
-            self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNB().onecmd("User.update(1)"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -1063,9 +1048,6 @@ class TestConsole(unittest.TestCase):
             self.assertFalse(HBNB().onecmd("create BaseModel"))
             testId = output.getvalue().strip()
             testCmd = "BaseModel.update({})".format(testId)
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNB().onecmd(testCmd))
-            self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNB().onecmd("create User"))
             testId = output.getvalue().strip()
