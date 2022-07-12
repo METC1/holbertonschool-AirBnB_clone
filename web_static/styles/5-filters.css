@@ -1,0 +1,49 @@
+.filters{
+background-color:white;
+height:70px;
+width:100%;
+border: 1px #DDDDDD;
+border-radius:4px;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+	
+}
+
+button{
+color:#FFFFFF;
+font-size:18px;
+background-color:#FF5A5F;
+height:48px;
+border:none;
+border-radius:4px;
+width:20%;
+margin-right:30px;
+
+font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+button:hover{
+opacity: 90%;
+}
+.locations{
+	height:100%;
+	width:25%;
+	border-right-style:solid;
+	border-width:1px;
+	border-color:#DDDDDD;
+	padding-left:75px;
+}
+.amenities{
+	height:100%;
+	width:25%;
+	padding-left:75px;
+}
+
+
+.h3{
+	font-weight:400;
+}
+.h4{
+	font-weight:400;
+	font-size:14px;
+}
